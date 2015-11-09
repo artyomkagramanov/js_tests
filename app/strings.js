@@ -2,42 +2,45 @@ exports = (typeof window === 'undefined') ? global : window;
 
 exports.stringsAnswers = {
   reduceString: function(str, amount) {
-  	
-  	/*var result='';
-  	var add=true;
-  	for(var i=0;i<str.length;i++){
-  		if(i+1 == str.length && add){
-  			result += str[i];
-  			continue;
-  		}else if(i == 0){
-  			result += str[i];
-  			continue;
-  		}else if(str[i] == result[i-1]){
-  			result += str[i];
-  			add=false;
-  		}else if(str[i] !=)
-  	}*/
- /* 	var temp_arr=[];
-  		console.log(str)
-  	console.log(amount)
-  	for(var i=0;i<str.length;i++){
-  		var str='';
-  		if(i+1 != str.length){
+/*  	     console.log(str)
+    console.log(amount)
 
-  		}
-*/
+    var temp_arr = [];
+    var result_str = str[0];
+    var temp_str = '';
+    var counter = 1;
+  	for(var i = 0;i < str.length;i++){
+      if(i===0){
+        if(str[i+1] === str[i]){
+
+        }
+      }
+    }
+    console.log(result_str)*/
 
   	
   },
   wordWrap: function(str, cols) {
-/*  	console.log(str)
-  	console.log(cols)*/
-  	var temp_arr = str.split(' ');
+    var return_str = '';
+    var str_arr = str.split(' ');
 
+    for (var i=0;i<str_arr.length;i++){
+      if(str_arr[i].length != 1){
+        if(i == 0)
+          return_str += str_arr[i];
+        else
+          return_str += '\n' + str_arr[i];
+      }
+      else{
+        if(i == 0)
+          return_str += str_arr[i];
+        else
+          return_str += ' ' + str_arr[i];
+      }
+    }
 
-  	for(var i=0;i<temp_arr.length;i++){
+     return return_str;
 
-  	}
   },
   reverseString: function(str) {
   	var result='';

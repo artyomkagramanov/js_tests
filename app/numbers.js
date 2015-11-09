@@ -2,8 +2,20 @@ exports = (typeof window === 'undefined') ? global : window;
 
 exports.numbersAnswers = {
   valueAtBit: function(num, bit) {
-/*  	console.log(num)
-  	console.log(bit)*/
+    function byteString(n) {
+      if (n < 0 || n > 255 || n % 1 !== 0) {
+          throw new Error(n + " does not fit in a byte");
+      }
+
+      return ("000000000" + n.toString(2)).substr(-8)
+    }
+
+    var binary = byteString(num);
+    var result_bit = binary[(binary.length-bit)];
+    return parseInt(result_bit);
+    
+
+
   },
 
   base10: function(str) {
@@ -13,16 +25,26 @@ exports.numbersAnswers = {
 
   convertToBinary: function(num) {
   	
-
-  	console.log(num);
-
-  	var n=65;
-
-  	console.log(n.toString(2))
+    function byteString(n) {
+      if (n < 0 || n > 255 || n % 1 !== 0) {
+          throw new Error(n + " does not fit in a byte");
+      }
+      return ("000000000" + n.toString(2)).substr(-8)
+    }
+    return byteString(num);
 
   },
 
   multiply: function(a, b) {
-  	return a*b;
+    var multiply = function(a, b) {
+        var commonMultiplier = 1000000;
+
+        a *= commonMultiplier;
+        b *= commonMultiplier;
+
+        return (a * b) / (commonMultiplier * commonMultiplier);
+    };
+    return multiply(a,b)
+
   }
 };

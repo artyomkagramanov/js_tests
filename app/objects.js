@@ -11,13 +11,13 @@ exports.objectsAnswers =  {
   },
 
   iterate : function(obj) {
-/*  	console.log(obj)
-  	for (var property in obj) {
-    if (obj.hasOwnProperty(property)) {
-        alert(obj[property])
+    var obj2=[];
+    for(var key in obj){
+      if(obj.hasOwnProperty(key)){
+        //console.log(obj[key])
+        obj2.push(key+': '+obj[key]);
+      }
     }
-}*/
-
-return obj;
+    return obj2;
   }
 };
