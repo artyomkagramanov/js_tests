@@ -72,7 +72,6 @@ exports.arraysAnswers = {
         continue;
       }else if(i>index){
         array[i] = arr[i-1];
-        console.log('>')
         continue;
       } else {
         array[i] = arr[i];
@@ -91,8 +90,6 @@ exports.arraysAnswers = {
   },
 
   duplicates : function(arr) {
-    //console.log(arr);
-    //console.log(item);
     function contains(a, obj) {
     for (var i = 0; i < a.length; i++) {
         if (a[i] === obj) {
@@ -100,18 +97,18 @@ exports.arraysAnswers = {
         }
     }
     return false;
-}
-    var result=[];
+    }
+    var duplicates=[];
     for(var i=0;i<arr.length;i++){
       for(j=0;j<arr.length;j++){
-        if (arr[i] == arr[j] && !contains(arr,arr[i])) {
-          result.push(arr[i]  );
+        if (arr[i] == arr[j] && i != j && !contains(duplicates,arr[i])) {
+
+          duplicates.push(arr[i]  );
           continue;
         }
       }
     }
-    //console.log(array)
-    return result;
+    return duplicates;
   },
 
   square : function(arr) {
