@@ -10,6 +10,38 @@ exports.flowControlAnswers = {
     //
     // otherwise the function should return the number, or false if no number
     // was provided or the value provided is not a number
+    
+    function NumberControl(num)
+    {
+
+        if(!isNaN(parseInt(num))){
+            num = '' + num;
+            var digits_arr = []
+            for (var i = 0; i < num.toString().length; i++) {
+                 digits_arr.push(num[i]);
+            };
+
+            var lastDigit = parseInt(digits_arr[digits_arr.length-1]);
+            var digits_sum = 0;
+            for (var i = 0; i < digits_arr.length; i++) {
+                digits_sum += parseInt(digits_arr[i]);
+            };
+
+            if( (lastDigit === 0 || lastDigit === 5) && (digits_sum % 3 === 0) ){ //divisible by 5 and 3
+                return 'fizzbuzz';
+            } else if ( (lastDigit === 0 || lastDigit === 5) ) { //divisible by 5 
+                return 'buzz';
+            } else if ( (digits_sum % 3 === 0) ) { //divisible by 3
+                return 'fizz';
+            } else { //otherwise if number return number
+                return parseInt(num);
+            }
+        } else {
+            return false;
+        }
+    }
+        
+    return NumberControl(num);
 
   }
 };

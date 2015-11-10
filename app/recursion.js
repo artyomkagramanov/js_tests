@@ -2,19 +2,35 @@ exports = (typeof window === 'undefined') ? global : window;
 
 exports.recursionAnswers = {
   listFiles: function(data, dirName) {
-  	var arr = [];
-  	 function isString(o) {
-        return (Object.prototype.toString.call(o) === '[object String]');
-    }
-    function print(data){
-    	for(var key in data){
- 
-    			arr.push(data[key]);
+	var files = [];
+	
+	function listOfFiles(data){		
+		for (var i = 0; i < data.length; i++) {
+			if(typeof data[i] == 'string'){
+				files.push(data[i]);
+			} else listOfFiles(data[i].files)
+		};	
+	}
 
-    }
 
-    console.log(arr)
-}
+	function listOfFilesInSubDir(obj){		
+		if(obj.dir == dirName){
+			listOfFiles(obj.files)
+		} else {
+			for (var i = 0; i < obj.files.length; i++) {
+				if(typeof obj.files[i] == 'object') listOfFilesInSubDir(obj.files[i]);
+			};
+		}
+	}
+	
+	if(arguments.length === 1){
+		listOfFiles(data.files);
+		return files;
+	} else {
+		listOfFilesInSubDir(data);
+		return files;
+	}
+	
   },
 
   permute: function(arr) {
@@ -69,7 +85,5 @@ exports.recursionAnswers = {
 	}
 
 	return nPair(n);
-
-
   }
 };

@@ -21,10 +21,22 @@ exports.functionsAnswers = {
   },
 
   makeClosures : function(arr, fn) {
-    /*console.log(arr);
-    console.log(fn);*/
+
+    var res_arr = [];
+    var func = function(item){
+        return function(){
+          return fn(item);
+        }
+    }
 
 
+    
+      for( var i=0;i<arr.length;i++){
+        res_arr.push(func(arr[i]));
+      }
+
+      return res_arr;
+    
   },
 
   partial : function(fn, str1, str2) {
@@ -48,14 +60,31 @@ exports.functionsAnswers = {
 
   callIt : function(fn) {
 
+    //console.log(fn);
+    var arguments = Array.prototype.slice.call(arguments,1);
+    //console.log(arguments)
+    return fn.apply(null,arguments);
   },
 
   partialUsingArguments : function(fn) {
     
- 
+    var args = Array.prototype.slice.call(arguments, 1)
+    return function() {
+      var remainingArgs = Array.prototype.slice.call(arguments)
+      return fn.apply(null, args.concat(remainingArgs))
+    }
+      
   },
 
   curryIt : function(fn) {
-    //console.log(fn)
+    return function(a){
+      return function(b){
+        return function(c){
+          return fn(a,b,c);
+        }
+      }
+    }
   }
 };
+
+
